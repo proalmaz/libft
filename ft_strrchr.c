@@ -6,7 +6,7 @@
 /*   By: vping <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 18:22:01 by vping             #+#    #+#             */
-/*   Updated: 2020/10/31 18:33:26 by vping            ###   ########.fr       */
+/*   Updated: 2020/11/03 17:25:32 by vping            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ char	*ft_strrchr(const char *s, int c)
 	int i;
 
 	i = ft_strlen(s) - 1;
+	if ((char)c == '\0')
+		return ((char *)&s[++i]);
 	while (s[i] != c && i >= 0)
 	{
 		i--;

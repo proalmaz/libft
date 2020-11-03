@@ -6,7 +6,7 @@
 /*   By: vping <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/30 12:36:34 by vping             #+#    #+#             */
-/*   Updated: 2020/11/03 15:03:42 by vping            ###   ########.fr       */
+/*   Updated: 2020/11/03 17:00:26 by vping            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,24 @@
 
 void	*ft_memccpy(void *dest, const void *src, int c, size_t n)
 {
-	while (n--)
+	size_t			i;
+	unsigned char	*d;
+	unsigned char	*s;
+
+	d = (unsigned char *)dest;
+	s = (unsigned char *)src;
+	i = 0;
+	while (i < n && s[i] != (unsigned char)c)
 	{
-		*(unsigned char *)dest++ = *(unsigned char *)src++;
-		if (*((unsigned char *)dest) - 1 == (unsigned char)c)
-			return (dest);
+		d[i] = s[i];
+		i++;
 	}
-	return (NULL);
+	if (i == n)
+		return (NULL);
+	else
+	{
+		d[i] = s[i];
+		i++;
+		return (&d[i]);
+	}
 }
