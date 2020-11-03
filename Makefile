@@ -6,22 +6,23 @@
 #    By: vping <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/02 20:21:58 by vping             #+#    #+#              #
-#    Updated: 2020/11/03 13:51:04 by vping            ###   ########.fr        #
+#    Updated: 2020/11/03 14:58:00 by vping            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -I. -c
-CLEAR = rm - f
-FILES =		ft_atoi.c \
+
+CFLAGS = -Wall -Wextra -Werror
+
+SRC =		ft_atoi.c \
 			ft_bzero.c \
 			ft_calloc.c \
-			ft_isalnum.c \
 			ft_isalpha.c \
 			ft_isascii.c \
 			ft_isdigit.c \
+			ft_isalnum.c \
 			ft_isprint.c \
 			ft_itoa.c \
 			ft_memccpy.c \
@@ -48,19 +49,25 @@ FILES =		ft_atoi.c \
 			ft_tolower.c \
 			ft_toupper.c
 
-SRCS_O = $(FILES:.c = .o)
+OBJS = ${SRC:.c=.o}
 
-$(NAME): $(SRCS_O)
-	ar rc $(NAME) $(SRCS_O)
+.c.o:
+	${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
 
-all: $(NAME)
+${NAME}:${OBJS}
+	ar rcs ${NAME} ${OBJS}
+
+all: ${NAME}
+
+so:
+	${CC} -shared -o libft.so ${OBJS}
 
 clean:
-	$(CLEAR) $(SRCS_O)
+	rm -f ${OBJS}
 
 fclean: clean
-	$(CLEAR) $(NAME)
+	rm -f ${NAME}
 
-re: clean all
+re: fclean all
 
 .PHONY: bonus all clean fclean re

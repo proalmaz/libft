@@ -6,7 +6,7 @@
 /*   By: vping <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 17:31:03 by vping             #+#    #+#             */
-/*   Updated: 2020/11/02 19:47:32 by vping            ###   ########.fr       */
+/*   Updated: 2020/11/03 15:06:43 by vping            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 			end--;
 	if (!(res = malloc(sizeof(char) * end + 1)))
 		return (NULL);
-	ft_strncpy(res, s1 + beg, end);
+	ft_strlcpy(res, s1 + beg, end);
 	res[end] = '\0';
 	return (res);
 }
