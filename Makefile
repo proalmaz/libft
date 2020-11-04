@@ -6,7 +6,7 @@
 #    By: vping <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/02 20:21:58 by vping             #+#    #+#              #
-#    Updated: 2020/11/03 14:58:00 by vping            ###   ########.fr        #
+#    Updated: 2020/11/04 19:48:16 by vping            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,10 +44,14 @@ SRC =		ft_atoi.c \
 			ft_strncmp.c \
 			ft_strnstr.c \
 			ft_strrchr.c \
+			ft_strmapi.c \
+			ft_memalloc.c \
+			ft_split.c \
 			ft_strtrim.c \
 			ft_substr.c \
 			ft_tolower.c \
-			ft_toupper.c
+			ft_toupper.c \
+			ft_strnew.c
 
 OBJS = ${SRC:.c=.o}
 

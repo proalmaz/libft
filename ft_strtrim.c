@@ -6,30 +6,47 @@
 /*   By: vping <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 17:31:03 by vping             #+#    #+#             */
-/*   Updated: 2020/11/03 15:06:43 by vping            ###   ########.fr       */
+/*   Updated: 2020/11/04 18:56:20 by vping            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strtrim(char const *s1, char const *set)
+static unsigned int		is_in_set(char c, char const *set)
 {
-	size_t	beg;
-	size_t	end;
-	char	*res;
+	while (*set)
+	{
+		if (c == *set)
+			return (1);
+		set++;
+	}
+	return (0);
+}
 
-	beg = 0;
-	if (!set || !s1)
+char					*ft_strtrim(char const *s1, char const *set)
+{
+	int				i;
+	unsigned int	outstr_size;
+	char			*outstr_start;
+	char			*outstr_end;
+	char			*outstr;
+
+	if (!s1 || !set)
 		return (NULL);
-	while (s1[beg] && ft_strchr(set, s1[beg]))
-		beg++;
-	end = ft_strlen(s1 + beg);
-	if (end)
-		while (s1[end + beg - 1] != 0 && ft_strchr(set, s1[end + beg - 1]) != 0)
-			end--;
-	if (!(res = malloc(sizeof(char) * end + 1)))
+	i = 0;
+	while (s1[i] && is_in_set(s1[i], set))
+		i++;
+	outstr_start = (char *)&s1[i];
+	if ((i = ft_strlen(s1) - 1) != -1)
+		while (i >= 0 && is_in_set(s1[i], set))
+			i--;
+	outstr_end = (char *)&s1[i];
+	if (!*s1 || outstr_end == outstr_start)
+		outstr_size = 2;
+	else
+		outstr_size = outstr_end - outstr_start + 2;
+	if (!(outstr = malloc(sizeof(char) * outstr_size)))
 		return (NULL);
-	ft_strlcpy(res, s1 + beg, end);
-	res[end] = '\0';
-	return (res);
+	ft_strlcpy(outstr, outstr_start, outstr_size);
+	return (outstr);
 }

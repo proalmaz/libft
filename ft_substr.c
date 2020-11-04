@@ -6,7 +6,7 @@
 /*   By: vping <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 16:29:20 by vping             #+#    #+#             */
-/*   Updated: 2020/11/04 15:43:21 by vping            ###   ########.fr       */
+/*   Updated: 2020/11/04 20:02:18 by vping            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,20 @@
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	char	*res;
-	int		p;
-
+	char		*res;
+	int			p;
+	size_t		s_len;
 
 	if (!s)
 		return (NULL);
-	if (start >= ft_strlen(s))
-	{
-		return (NULL);
-	}
+	s_len = ft_strlen(s);
 	res = (char *)malloc(len + 1);
 	p = -len;
+	if (start >= ft_strlen(s))
+	{
+		*res = '\0';
+		return (res);
+	}
 	if (res == NULL)
 		return (NULL);
 	while (len--)

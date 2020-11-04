@@ -1,29 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_strnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vping <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/02 20:45:58 by vping             #+#    #+#             */
-/*   Updated: 2020/11/04 16:35:34 by vping            ###   ########.fr       */
+/*   Created: 2020/11/04 19:45:59 by vping             #+#    #+#             */
+/*   Updated: 2020/11/04 19:47:31 by vping            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putnbr_fd(int n, int fd)
+char	*ft_strnew(size_t size)
 {
-	unsigned int nbr;
+	char	*str;
 
-	if (n < 0)
+	str = (char *)malloc((size + 1) * sizeof(char));
+	if (str)
 	{
-		ft_putchar_fd('-', fd);
-		nbr = (unsigned int)(n * -1);
+		ft_bzero(str, size + 1);
+		return (str);
 	}
-	else
-		nbr = (unsigned int)n;
-	if (nbr >= 10)
-		ft_putnbr_fd(nbr / 10, fd);
-	ft_putchar_fd((char)(nbr % 10 + '0'), fd);
+	return (NULL);
 }

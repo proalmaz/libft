@@ -3,52 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vping <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: ckrommen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/01 20:22:01 by vping             #+#    #+#             */
-/*   Updated: 2020/11/02 20:05:03 by vping            ###   ########.fr       */
+/*   Created: 2017/09/27 13:46:09 by ckrommen          #+#    #+#             */
+/*   Updated: 2020/11/04 19:48:51 by vping            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_nblen(unsigned int n)
+char	*ft_itoa(int nbr)
 {
-	unsigned int	i;
+	int		length;
+	int		sign;
+	char	*str;
 
-	i = 0;
-	while (n >= 10)
-	{
-		n /= 10;
-		i++;
-	}
-	return (i++);
-}
-
-char		*ft_itoa(int n)
-{
-	char			*dest;
-	unsigned int	len;
-	unsigned int	nb;
-	unsigned int	i;
-
-	nb = (n < 0 ? -n : n);
-	len = ft_nblen(nb);
-	i = 0;
-	if (!(dest = (char *)malloc(sizeof(char) * len + 1 + (n < 0 ? 1 : 0))))
+	sign = nbr;
+	length = 1;
+	while (sign /= 10)
+		length++;
+	sign = nbr < 0 ? 1 : 0;
+	length = nbr < 0 ? length += 1 : length;
+	if (nbr == -2147483648)
+		return (str = ft_strdup("-2147483648"));
+	str = ft_strnew(length);
+	if (!str)
 		return (NULL);
-	if (n < 0)
+	if (sign)
+		str[0] = '-';
+	nbr = nbr < 0 ? nbr *= -1 : nbr;
+	while (--length >= sign)
 	{
-		dest[i] = '-';
-		len++;
+		str[length] = (nbr >= 10) ? (nbr % 10) + 48 : nbr + 48;
+		nbr /= 10;
 	}
-	i = len--;
-	while (nb >= 10)
-	{
-		dest[i--] = nb % 10 + '0';
-		nb /= 10;
-	}
-	dest[i] = nb % 10 + '0';
-	dest[len] = '\0';
-	return (dest);
+	str[ft_strlen(str)] = '\0';
+	return (str);
 }
