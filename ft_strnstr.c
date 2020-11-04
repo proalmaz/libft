@@ -6,50 +6,33 @@
 /*   By: vping <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 18:47:48 by vping             #+#    #+#             */
-/*   Updated: 2020/11/03 18:26:41 by vping            ###   ########.fr       */
+/*   Updated: 2020/11/04 15:28:01 by vping            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <string.h>
-#include <stdio.h>
 
 char	*ft_strnstr(const char *s1, const char *s2, size_t n)
 {
-	int ndl_len;
-	int c;
+	char	*h;
+	size_t	s2_len;
+	size_t	i;
+	size_t	j;
 
-	ndl_len = 0;
-	if (!s1 && !s2)
+	h = (char *)s1;
+	if (!(s2_len = ft_strlen(s2)))
+		return (h);
+	if (ft_strlen(s1) < s2_len || n < s2_len)
 		return (NULL);
-	while (s2[ndl_len])
-		ndl_len++;
-	while (*s1 != *s2 && n)
+	i = 0;
+	while (h[i] && i <= n - s2_len)
 	{
-		s1++;
-		n--;
-	}
-	c = ndl_len;
-	while (ndl_len >= 0 && n-- > 0)
-	{
-		while (*s1 == *s2 && n-- > 0)
-		{
-			s1++;
-			s2++;
-			ndl_len--;
-			if (ndl_len == 0)
-				return ((char *)(s1 - c));
-		}
+		j = 0;
+		while (s2[j] && s2[j] == h[i + j])
+			j++;
+		if (j == s2_len)
+			return (&h[i]);
+		i++;
 	}
 	return (NULL);
-}
-
-int main()
-{
-	char *big = "abcdef";
-	char *little = "abcdefghijklmnop";
-	size_t max = strlen(big);
-	char *s1 = strnstr(big, little, max);
-	printf("%s\n", s1);
-	/*char *s2 = ft_strnstr(big, little, max);*/
 }
