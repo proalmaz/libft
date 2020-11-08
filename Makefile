@@ -6,7 +6,7 @@
 #    By: vping <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/02 20:21:58 by vping             #+#    #+#              #
-#    Updated: 2020/11/04 19:48:16 by vping            ###   ########.fr        #
+#    Updated: 2020/11/08 12:42:58 by vping            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,13 +53,28 @@ SRC =		ft_atoi.c \
 			ft_toupper.c \
 			ft_strnew.c
 
+SRC_B = 	ft_lstnew.c \
+			ft_lstadd_front.c \
+			ft_lstsize.c \
+			ft_lstlast.c \
+			ft_lstadd_back.c \
+			ft_lstdelone.c \
+			ft_lstclear.c \
+			ft_lstiter.c \
+			ft_lstmap.c \
+
 OBJS = ${SRC:.c=.o}
+
+OBJS_B = ${SRC_B:.c=.o}
 
 .c.o:
 	${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
 
 ${NAME}:${OBJS}
 	ar rcs ${NAME} ${OBJS}
+
+bonus: $(OBJS_B)
+	ar rcs $(NAME) $^
 
 all: ${NAME}
 
