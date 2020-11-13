@@ -1,38 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vping <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/31 15:48:18 by vping             #+#    #+#             */
-/*   Updated: 2020/11/09 15:54:34 by vping            ###   ########.fr       */
+/*   Created: 2020/11/09 15:55:02 by vping             #+#    #+#             */
+/*   Updated: 2020/11/10 17:29:33 by vping            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(const char *arr)
+void	ft_lstdelone(t_list *lst, void (*del)(void *))
 {
-	int sign;
-	int res;
-
-	res = 0;
-	sign = 1;
-	while (*arr == ' ' || *arr == '\t' ||
-			*arr == '\v' || *arr == '\f' || *arr == '\r' ||
-			*arr == '\n')
-		arr++;
-	if (*arr == '-' || *arr == '+')
+	if (!del)
+		return ;
+	if (lst)
 	{
-		if (*arr == '-')
-			sign = -1;
-		arr++;
+		del(lst->content);
+		free(lst);
 	}
-	while (*arr >= '0' && *arr <= '9')
-	{
-		res = res * 10 + (*arr - '0');
-		arr++;
-	}
-	return (sign * res);
 }

@@ -1,38 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vping <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/31 15:48:18 by vping             #+#    #+#             */
-/*   Updated: 2020/11/09 15:54:34 by vping            ###   ########.fr       */
+/*   Created: 2020/11/09 15:06:46 by vping             #+#    #+#             */
+/*   Updated: 2020/11/09 15:53:16 by vping            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(const char *arr)
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	int sign;
-	int res;
+	t_list	*last;
 
-	res = 0;
-	sign = 1;
-	while (*arr == ' ' || *arr == '\t' ||
-			*arr == '\v' || *arr == '\f' || *arr == '\r' ||
-			*arr == '\n')
-		arr++;
-	if (*arr == '-' || *arr == '+')
+	if (!*lst)
 	{
-		if (*arr == '-')
-			sign = -1;
-		arr++;
+		*lst = new;
+		return ;
 	}
-	while (*arr >= '0' && *arr <= '9')
-	{
-		res = res * 10 + (*arr - '0');
-		arr++;
-	}
-	return (sign * res);
+	last = ft_lstlast(*lst);
+	last->next = new;
 }
