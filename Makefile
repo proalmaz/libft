@@ -6,7 +6,7 @@
 #    By: vping <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/02 20:21:58 by vping             #+#    #+#              #
-#    Updated: 2020/11/10 17:52:11 by vping            ###   ########.fr        #
+#    Updated: 2020/11/13 19:32:51 by vping            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,13 +52,6 @@ SRC =		ft_atoi.c \
 			ft_tolower.c \
 			ft_toupper.c \
 			ft_strnew.c \
-			ft_lstnew.c \
-			ft_lstadd_front.c \
-			ft_lstsize.c \
-			ft_lstlast.c \
-			ft_lstadd_back.c \
-			ft_lstdelone.c \
-			ft_lstclear.c \
 
 SRC_B = 	ft_lstnew.c \
 			ft_lstadd_front.c \
@@ -85,9 +78,6 @@ bonus: $(OBJS_B)
 
 all: ${NAME}
 
-so:
-	${CC} -shared -o libft.so ${OBJS}
-
 clean:
 	rm -f ${OBJS}
 
@@ -95,5 +85,3 @@ fclean: clean
 	rm -f ${NAME}
 
 re: fclean all
-
-.PHONY: bonus all clean fclean re

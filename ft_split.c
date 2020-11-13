@@ -6,14 +6,13 @@
 /*   By: vping <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 19:19:21 by vping             #+#    #+#             */
-/*   Updated: 2020/11/08 14:10:42 by vping            ###   ########.fr       */
+/*   Updated: 2020/11/13 19:31:14 by vping            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char
-	**ft_alloc_split(char const *s, char c)
+static char		**ft_alloc_split(char const *s, char c)
 {
 	size_t	i;
 	char	**split;
@@ -33,8 +32,7 @@ static char
 	return (split);
 }
 
-void
-	*ft_free_all_split_alloc(char **split, size_t elts)
+static void		*ft_free_all_split_alloc(char **split, size_t elts)
 {
 	size_t	i;
 
@@ -48,8 +46,7 @@ void
 	return (NULL);
 }
 
-static void
-	*ft_split_range(char **split, char const *s,
+static void		*ft_split_range(char **split, char const *s,
 		t_split_next *st, t_split_next *lt)
 {
 	split[lt->length] = ft_substr(s, st->start, st->length);
@@ -59,8 +56,7 @@ static void
 	return (split);
 }
 
-static void
-	*ft_split_by_char(char **split, char const *s, char c)
+static void		*ft_split_by_char(char **split, char const *s, char c)
 {
 	size_t			i;
 	t_split_next	st;
@@ -89,8 +85,7 @@ static void
 	return (split);
 }
 
-char
-	**ft_split(char const *s, char c)
+char			**ft_split(char const *s, char c)
 {
 	char	**split;
 
