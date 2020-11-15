@@ -6,7 +6,7 @@
 #    By: vping <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/02 20:21:58 by vping             #+#    #+#              #
-#    Updated: 2020/11/13 19:32:51 by vping            ###   ########.fr        #
+#    Updated: 2020/11/15 15:21:59 by vping            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -79,7 +79,7 @@ bonus: $(OBJS_B)
 all: ${NAME}
 
 clean:
-	rm -f ${OBJS}
+	rm -f ${OBJS} ${OBJS_B}
 
 fclean: clean
 	rm -f ${NAME}
