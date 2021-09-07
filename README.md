@@ -5,4 +5,4 @@ Implemented a few functions of the C standard library as well as some other util
 # Usage
 `make`
 
-now you can link libft.a file with our files.
+now you can link libft.a file with your files.
