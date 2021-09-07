@@ -3,5 +3,6 @@
 Implemented a few functions of the C standard library as well as some other utility functions.
 
 # Usage
-`<make>`
+`make`
+
 now you can link libft.a file with our files.
